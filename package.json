@@ -1,6 +1,6 @@
 {
   "name": "@hexlet/code",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "description": "[![Actions Status](https://github.com/kolix2006/frontend-project-46/actions/workflows/hexlet-check.yml/badge.svg)](https://github.com/kolix2006/frontend-project-46/actions)",
   "homepage": "https://github.com/kolix2006/frontend-project-46#readme",
   "bugs": {
@@ -16,7 +16,7 @@
   "license": "ISC",
   "author": "",
   "type": "module",
-  "main": "index.js",
+  "main": "gendiff.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
