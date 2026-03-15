@@ -4,9 +4,9 @@ import { Command } from 'commander'
 import parseJsonFile from './parse.js'
 import _ from 'lodash'
 
-const program = new Command
+const program = new Command()
 
-program
+export default program
   .name('gendiff')
   .description('Compares two configuration files and shows a difference.')
   .version('1.0.0')
@@ -43,7 +43,7 @@ program
 
     const conc = (obj) => {
       const objEntries = Object.entries(obj)
-      const mapped = objEntries.map((el) => `  ${el.join(': ')}`)
+      const mapped = objEntries.map(el => `  ${el.join(': ')}`)
       const spaced = mapped.join('\n')
       return `{\n${spaced}\n}`
     }
