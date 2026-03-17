@@ -1,6 +1,6 @@
 {
   "name": "@hexlet/code",
-  "version": "1.1.0",
+  "version": "1.2.0",
   "description": "[![Actions Status](https://github.com/kolix2006/frontend-project-46/actions/workflows/hexlet-check.yml/badge.svg)](https://github.com/kolix2006/frontend-project-46/actions)",
   "homepage": "https://github.com/kolix2006/frontend-project-46#readme",
   "bugs": {
@@ -22,7 +22,8 @@
     "test-coverage": "jest --coverage"
   },
   "dependencies": {
-    "commander": "^14.0.3"
+    "commander": "^14.0.3",
+    "js-yaml": "^4.1.1"
   },
   "devDependencies": {
     "@eslint/create-config": "^1.11.0",

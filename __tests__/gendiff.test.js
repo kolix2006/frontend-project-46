@@ -13,4 +13,8 @@ describe('Проверка работоспособности проекта', (
   test('Сравнение плоских JSON-файлов', () => {
     expect(genDiffs(getFixturePath('file1.json'), getFixturePath('file2.json'))).toBe(readFile('expectedFile.txt').trim())
   })
+  test('Сравнение плоских YAML-файлов', () => {
+    expect(genDiffs(getFixturePath('yamlfile1.yaml'), getFixturePath('yamlfile2.yaml'))).toBe(readFile('expectedFile.txt').trim())
+    expect(genDiffs(getFixturePath('file1.yml'), getFixturePath('file2.yml'))).toBe(readFile('expectedFile.txt').trim())
+  })
 })

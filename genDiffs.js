@@ -1,9 +1,9 @@
-import parseJsonFile from './parse.js'
+import parseFile from './parsers.js'
 import _ from 'lodash'
 
 const genDiffs = (filepath1, filepath2) => {
-  const parsedFile1 = parseJsonFile(filepath1)
-  const parsedFile2 = parseJsonFile(filepath2)
+  const parsedFile1 = parseFile(filepath1)
+  const parsedFile2 = parseFile(filepath2)
 
   const objKeys1 = Object.keys(parsedFile1)
   const objKeys2 = Object.keys(parsedFile2)
