@@ -1,0 +1,13 @@
+import plainConc from './plainConc.js'
+import stylishConc from './stylishConc.js'
+
+const chooseFormatter = (formatter) => {
+  if (formatter === 'stylish') {
+    return stylishConc
+  }
+  else if (formatter === 'plain') {
+    return plainConc
+  }
+}
+
+export default chooseFormatter

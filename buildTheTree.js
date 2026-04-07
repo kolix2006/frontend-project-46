@@ -1,18 +1,12 @@
-import parseFile from './parsers.js'
-import buildTheTree from './buildTheTree.js'
-import chooseFormatter from './formatters/index.js'
 import _ from 'lodash'
 
-const genDiffs = (filepath1, filepath2, formatter = 'stylish') => {
-  const parsedFile1 = parseFile(filepath1)
-  const parsedFile2 = parseFile(filepath2)
-
+const buildTheTree = (file1, file2) => {
   const getGendiff = (parsedFile1, parsedFile2) => {
     const objKeys1 = Object.keys(parsedFile1)
     const objKeys2 = Object.keys(parsedFile2)
     const objKeys = (_.union(objKeys1, objKeys2)).sort()
 
-    let diffs = {}
+    let diffs = []
     const getDiffs = objKeys.reduce((acc, key) => {
       const isAdded = !Object.hasOwn(parsedFile1, key) && Object.hasOwn(parsedFile2, key)
       const isDeleted = Object.hasOwn(parsedFile1, key) && !Object.hasOwn(parsedFile2, key)
@@ -21,20 +15,19 @@ const genDiffs = (filepath1, filepath2, formatter = 'stylish') => {
       const isNested = (typeof parsedFile1[key] === 'object' && typeof parsedFile2[key] === 'object') && (parsedFile1[key] !== null && parsedFile2[key] !== null)
 
       if (isNested && isChanged) {
-        acc[`  ${key}`] = getGendiff(parsedFile1[key], parsedFile2[key])
+        acc.push({ type: 'nested', key: key, children: getGendiff(parsedFile1[key], parsedFile2[key]) })
       }
       else if (isAdded) {
-        acc[`+ ${key}`] = parsedFile2[key]
+        acc.push({ type: 'added', key: key, value: parsedFile2[key] })
       }
       else if (isDeleted) {
-        acc[`- ${key}`] = parsedFile1[key]
+        acc.push({ type: 'deleted', key: key, value: parsedFile1[key] })
       }
       else if (isChanged) {
-        acc[`- ${key}`] = parsedFile1[key]
-        acc[`+ ${key}`] = parsedFile2[key]
+        acc.push({ type: 'changed', key: key, oldValue: parsedFile1[key], newValue: parsedFile2[key] })
       }
       else if (isUnchanged) {
-        acc[`  ${key}`] = parsedFile2[key]
+        acc.push({ type: 'unchanged', key: key, value: parsedFile2[key] })
       }
       return acc
     }, diffs)
@@ -43,12 +36,7 @@ const genDiffs = (filepath1, filepath2, formatter = 'stylish') => {
     return diffs
   }
 
-  if (formatter === 'stylish') {
-    return chooseFormatter(formatter)(getGendiff(parsedFile1, parsedFile2))
-  }
-  else if (formatter === 'plain') {
-    return chooseFormatter(formatter)(buildTheTree(parsedFile1, parsedFile2))
-  }
+  return getGendiff(file1, file2)
 }
 
-export default genDiffs
+export default buildTheTree

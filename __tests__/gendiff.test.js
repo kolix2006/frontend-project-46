@@ -23,4 +23,10 @@ describe('Проверка работоспособности проекта', (
   test('Сравнение рекурсивных YAML-файлов', () => {
     expect(genDiffs(getFixturePath('dfile1.yaml'), getFixturePath('dfile2.yaml'))).toBe(readFile('expectedDfile.txt').trim())
   })
+  test('Сравнение рекурсивных JSON-файлов с плоским форматированием', () => {
+    expect(genDiffs(getFixturePath('dfile1.json'), getFixturePath('dfile2.json'), 'plain')).toBe(readFile('expectedPfile.txt').trim())
+  })
+  test('Сравнение рекурсивных YAML-файлов с плоским форматированием', () => {
+    expect(genDiffs(getFixturePath('dfile1.yaml'), getFixturePath('dfile2.yaml'), 'plain')).toBe(readFile('expectedPfile.txt').trim())
+  })
 })
