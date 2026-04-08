@@ -1,5 +1,6 @@
 import plainConc from './plainConc.js'
 import stylishConc from './stylishConc.js'
+import jsonConc from './jsonConc.js'
 
 const chooseFormatter = (formatter) => {
   if (formatter === 'stylish') {
@@ -7,6 +8,9 @@ const chooseFormatter = (formatter) => {
   }
   else if (formatter === 'plain') {
     return plainConc
+  }
+  else if (formatter === 'json') {
+    return jsonConc
   }
 }
 

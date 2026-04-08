@@ -49,6 +49,9 @@ const genDiffs = (filepath1, filepath2, formatter = 'stylish') => {
   else if (formatter === 'plain') {
     return chooseFormatter(formatter)(buildTheTree(parsedFile1, parsedFile2))
   }
+  else if (formatter === 'json') {
+    return chooseFormatter(formatter)(buildTheTree(parsedFile1, parsedFile2))
+  }
 }
 
 export default genDiffs
